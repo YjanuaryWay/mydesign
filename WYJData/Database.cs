@@ -14,7 +14,7 @@ namespace WYJData
 
         public Database(string connectionString = null)
         {
-            connectionString ??= "Data Source=47.92.217.144;database=WYJ;uid=sa;pwd=~Zhiqing12345678";
+            connectionString ??= "Data Source=47.92.217.144;database=WYJ;uid=sa;pwd=****";
             var connection = new SqlConnection(connectionString);
             connection.Open();
             sqlCommand = new SqlCommand
