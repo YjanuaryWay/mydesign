@@ -1,0 +1,90 @@
+﻿    <div class="fitem_auto padding" id="Root">
+        <div v-show="msg" class="msgbox_alert">{{msg}}</div>
+        <div v-show="active">
+            <buttonlist :hook="hooks[0]" :set="sets[0]" class="wyjcontainer_H border_B padding_V"></buttonlist>
+            <pagenation :hook="hooks[1]" :set="listMain" api="Notification" hasToolbar="yes">
+                <template #toolbar="postData">
+                    <input placeholder="请输入通知内容" v-model="postData.queryKeys.key" />
+                </template>
+                <template #td="models">
+                    <td>{{models.model.Id}}</td>
+                    <td>{{models.model.Receiver}}</td>
+                    <td>{{models.model.Content}}</td>
+                    <td>{{models.model.PublishTime.substring(0,10)}}</td>
+                    <td>{{models.model.HasRead}}</td>
+                    <td>
+                        <a v-for="btn in icons" :key="btn.text" :class="btn.class" @@click="btn.act(models.model)"><i class="icon icon-lg icon-trash"></i>{{btn.text}}</a>
+                    </td>
+                </template>
+            </pagenation>
+        </div>
+        <div v-show="!active" class="exclusive wyjcontainer_V">
+            <buttonlist :hook="hooks[2]" :set="sets[1]" class="wyjcontainer_HL hr padding_V">
+            </buttonlist>
+            <editor :hook="hooks[3]" :set="labels">
+                <template v-if="viewMode" #ele>
+                    <div class="formGroup_ele" v-for="(y,x) in labels">{{model[x]}}</div>
+                </template>
+                <template v-else #ele="slotProps">
+                    <input class="formGroup_ele" v-model="model.Receiver" placeholder="请输入通知对象" />
+                    <input class="formGroup_ele" v-model="model.Content" placeholder="请输入通知内容" />
+                    <input class="formGroup_ele" v-model="model.PublishTime" placeholder="请输入通知发布时间" type="date"/>
+                    <input class="formGroup_ele" v-model="model.HasRead" placeholder="是否已读" type="checkbox"/>
+                </template>
+                <template #subtmpl>
+                </template>
+            </editor>
+            <buttonlist :hook="hooks[4]" :set="sets[2]" class="wyjcontainer_HM"></buttonlist>
+        </div>
+        <wyjdialog title="WYJModal" id="modal">
+            <template #content>
+                <pagenation hook="modal" :set="sets[3]" api="role">
+                    <template #td="models">
+                        <td>{{models.model.Id}}</td>
+                        <td>{{models.model.Name}}</td>
+                        <td>{{models.model.Powers}}</td>
+                        <td>{{models.model.ModelType}}</td>
+                        <td>
+                        </td>
+                    </template>
+                </pagenation>
+            </template>
+        </wyjdialog>
+
+    </div>
+@section foot {
+    <script type="text/javascript">
+        var app = new App({
+            Api: 'Notification',
+            listMain: {
+                titles: ["ID", "通知对象", "通知内容", "通知发布时间", "是否已读", "操作"]
+            },
+            PageTitles: ['管理通知', '新增通知', '编辑通知', '查看通知'],
+            icons: [{
+                class: "text_danger",
+                text: "删除",
+                act: (e, i) => {
+                    app.DeleteById(e.Id, i)
+                }
+            }, {
+                class: "text_primary",
+                text: "编辑",
+                act: (e) => {
+                    app.Switch(2, e);
+                }
+            }, {
+                class: "text_primary",
+                text: "查看",
+                act: (e) => {
+                    app.Switch(3, e);
+                }
+            }],
+            labels: {
+                Receiver: '通知对象',
+                Content: '通知内容',
+                PublishTime: '发布时间',
+                HasRead: '是否已读'
+            }
+        });
+    </script>
+}

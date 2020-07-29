@@ -1,0 +1,40 @@
+﻿<nav class="wyjcontainer_H">
+    <div class="wyjcontainer_H">
+        <img src="~/Content/images/logo.png" />
+        <strong class="logo">欢迎光临MES！</strong>
+    </div>
+    <div class="wyjcontainer_H">
+        <span class="username">你好！@(Model.LoginId ?? "游客")</span>
+        <div class="dropdown">
+            <img src="~/Content/images/default.png" />
+            <ul class="dropdown-content">
+                <li class="dropdown__item" @@click="ChangePwd">
+                    <a>修改密码</a>
+                </li>
+                <li class="dropdown__item" @@click="logout">
+                    <a>退出登录</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script type="text/javascript">
+    var nav = new Vue({
+        el: 'nav',
+        data: {
+            menus: [],
+        },
+        methods: {
+            logout() {
+                Ajax.get("/api/user/logout", function (res) {
+                    console.log(res);
+                    when(res.IsSuccess, () => window.location.href = "/Login");
+                });
+            },
+            ChangePwd() {
+                    alert("演示项目，无须密码");
+            }
+        }
+    });
+</script>
+

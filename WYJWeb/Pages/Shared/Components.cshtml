@@ -1,0 +1,139 @@
+﻿<script type="text/template" id="ButtonList">
+    <div class="fitem_none">
+        <slot name="prehtml">{{preText}}</slot>
+        <div class="wyjcontainer_H">
+            <button v-for="btn in btns" :class="btn.class" :hook="btn.id" @@click="(e)=>sendEvent(btn.event,e)">{{btn.text}}</button>
+        </div>
+        <slot name="afterhtml">{{afterText}}</slot>
+    </div>
+</script>
+
+<script type="text/template" id="Pagenation">
+    <div :name="name" class="pagenation">
+        <div v-if="hastoolbar" class="wyjcontainer_HL padding_V">
+            <slot name="toolbar" :queryKeys="queryKeys">
+                <input placeholder="请输入关键字" v-model="queryKeys.key" />
+            </slot>
+            <input type="button" class="btn btn_info" @@click="Reset" value="重置"/>
+        </div>
+        <table class="fitem_auto">
+            <thead><tr><th v-for="th in titles">{{th}}</th></tr></thead>
+            <tbody v-if="Data.length">
+                <tr v-for="(model,index) in Data">
+                    <slot name="td" :model="model" :index="index"></slot>
+                </tr>
+            </tbody>
+            <tbody v-else>
+                <tr>
+                    <td :colspan="titles.length" height="200px">暂无数据</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="fitem_none wyjcontainer_H padding_V">
+            <div class="fitem_none">
+                共<span>{{endIndex}}</span>页&nbsp;&nbsp; 每页
+                <input type="number" min="5" step="5" :value="pagesize" @@change="SetPagesize">条记录&nbsp;&nbsp;共
+                <span>{{Count}}</span>条记录
+            </div>
+            <div class="fitem_none wyjcontainer_H" v-show="Count" >
+                <button v-if="startIndex != 0" v-for="(btn,i) in prebtns" :key="btn.id" @@click.stop="btn.act">{{btn.text}}</button>
+                <button v-for="(btn,i) in btns" :class="btn.class" :key="i" @@click.stop="btn.act">{{btn.text}}</button>
+                <button v-if="startIndex + step < endIndex" v-for="(btn,i) in nextbtns" :key="btn.id" @@click.stop="btn.act">{{btn.text}}</button>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="Editor">
+    <div class="fitem_auto hr wyjcontainer_V padding_V">
+        <div class="wyjcontainer_HM padding_V">
+            <div class="fitem_none">
+                <div v-for="label in labels" class="formGroup_label">
+                    {{label}}:
+                </div>
+            </div>
+            <div class="fitem_auto ">
+                <slot name="ele"></slot>
+            </div>
+        </div>
+        <slot name="subtmpl"></slot>
+    </div>
+</script>
+
+
+
+<script type="text/template" id="Table">
+    <table class="fitem_auto">
+        <thead><tr><th v-for="th in ths">{{th}}</th></tr></thead>
+        <tbody v-if="tbody.length">
+            <tr v-for="(model,index) in tbody">
+                <slot name="td" :model="model" :index="index"></slot>
+            </tr>
+        </tbody>
+        <tbody v-else>
+            <tr>
+                <td :colspan="ths.length" height="200px">暂无数据</td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+
+
+
+
+
+<script type="text/template" id="editor">
+    <div class="fitem_auto hr wyjcontainer_V padding_V">
+        <div class="wyjcontainer_V padding_V">
+            <slot name="ele"></slot>
+        </div>
+        <slot name="subtmpl"></slot>
+    </div>
+</script>
+
+<script type="text/template" id="viewer">
+    <div class="fitem_auto hr wyjcontainer_V padding_V">
+        <div class="wyjcontainer_HM padding_V">
+            <div class="fitem_none">
+                <div v-for="lable in data.lables" class="formGroup_label">
+                    {{lable}}:
+                </div>
+            </div>
+            <div class="fitem_auto ">
+                <slot name="ele"></slot>
+            </div>
+        </div>
+        <slot name="subtmpl"></slot>
+    </div>
+</script>
+
+<script type="text/template" id="dialog">
+    <div role="dialog" class="WYJdialog" v-show="show">
+        <div class="WYJdialog_content wyjcontainer_V">
+            <div class="wyjcontainer_H  hr">
+                <b>{{title}}</b>
+                <a @@click="cancelEvent">x</a>
+            </div>
+            <slot name="content"></slot>
+            <div class="wyjcontainer_HR">
+                <a class="btn btn_default" @@click="cancelEvent">取消</a>
+                <button v-if="okTitle" class="btn btn_primary" @@click="okEvent">{{okTitle}}</button>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/template" id="">
+</script>
+<script type="text/template" id="">
+</script>
+<script type="text/template" id="">
+</script>
+<script type="text/template" id="">
+</script>
+
+<script src="~/Scripts/Base/wyjPlugin.js"></script>
+<script src="~/Components/Base/base.js"></script>
+<script src="~/Components/Optional/Pagedetail.js"></script>

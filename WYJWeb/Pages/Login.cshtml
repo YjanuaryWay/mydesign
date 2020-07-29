@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "登陆页";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+    <link href="~/Content/css/component.css" rel="stylesheet" />
+    <script src="~/Components/Drop/Vue.js"></script>
+    <script src="~/Scripts/Base/base.js"></script>
+    <script src="~/Scripts/Base/wyjPlugin.js"></script>
+</head>
+<body>
+    <!--[if lt  IE 9]>
+             <div style=" position: fixed;top: 0px;left: 0px;height:100%;width:100%;background: #000;z-index:10000">
+            <div style="height: 100%;margin: auto;position: relative;width: 840px;padding-top: 50px;z-index:10001">
+                <div style=" padding-top:20px;background-color:#fff;">
+                    <h2 style="text-align:center;font-size:24px;font-weight:bold;">很抱歉！您使用的浏览器版本过低，无法使用我们的系统，请升级后再试！</h2>
+                    <p style="text-align:center;font-size:18px;margin-top:20px;">建议使用以下浏览器或浏览版本的极速模式使用</p>
+                    <div style="width:840px;padding:0 20px;">
+                        <a href="/browser/ChromeStandaloneSetup.exe" style="float:left;padding:40px;text-align:center;text-decoration:none;" >
+                            <span><img src="/Content/images/google.png" style="width:100px;height:100px;padding:5px;" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">Google浏览器</p>
+                            <p style="width:120px;text-align:center;margin-top:10px;color:red;">（本地下载）</p>
+                        </a>
+
+                        <a href="http://chrome.360.cn/index.html" style="float:left;padding:40px;text-align:center;text-decoration:none;">
+                            <span><img src="/Content/images/360.png" style="width:100px;height:100px;padding:5px;" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">360极速浏览器</p>
+                            <p style="width:120px;text-align:center;margin-top:10px;color:red;">（强烈推荐）</p>
+                        </a>
+
+                        <a href="http://www.firefox.com.cn/" style="float:left;padding:40px;text-align:center;text-decoration:none;">
+                            <span><img src="/Content/images/huohu.png" style="width:100px;height:100px" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">火狐浏览器</p>
+                        </a>
+
+                        <a href="http://browser.qq.com/" style="float:left;padding:40px;text-decoration:none;">
+                            <span><img src="/Content/images/qq.png" style="width:100px;height:100px" /></span>
+                            <p style="width:120px;text-align:center;margin-top:10px;">QQ浏览器</p>
+
+                        </a>
+                    </div>
+                    <div style="clear: both;"></div>
+                    <p style="text-align:center;font-size:18px;margin-bottom:20px;">如果您当前已使用360极速或360安全浏览器仍然能看到本页，可能由于未打开极速模式。</p>
+                    <p style="text-align:center;padding-bottom:20px;"><a href="http://se.360.cn/v6/help/help5.html" style="text-decoration:none;">如何打开极速模式?</a></p>
+                </div>
+            </div>
+        </div>
+        <![endif]-->
+    <div class="login login_bg form" style="background-image: url('Content/images/bg2.jpg');">
+        <div class="login__content formDetail login" id="Root">
+            <div v-show="msg" class="msgbox_alert">{{msg}}</div>
+            <div class="login__title">
+                欢迎登录{{site}}
+            </div>
+            <div class="login__form">
+                <div class="form-group">
+                    <input :value="user.LoginId" class="form-control" placeholder="请输入账号" />
+                </div>
+                <div class="form-group">
+                    <input :value="user.Password" class="form-control" type="password" placeholder="请输入密码" />
+                </div>
+            </div>
+            <div class="login__actions">
+                <input type="button" class="btn btn-primary" value="登陆" @@click="login" />
+                <button id="register" class="btn btn-danger" data-act="Register"  @@click="signfor">注册</button>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#Root',
+            data() {
+                return {
+                    msg: '',
+                    site: "MES系统",
+                    user: {
+                        LoginId: '',
+                        Password: ''
+                    }
+                }
+            },
+            methods: {
+                login: function () {
+                    Ajax.post("/api/user/Login", JSON.stringify(this.user)).then(res => {
+                        when(res.IsSuccess, () => {
+                            this.msg = "登录成功,即将跳转页面";
+                            setTimeout(function () {
+                                //this.msg = ''
+                                window.location.href = "/Index";
+                            }, 2000);
+                        });
+                    });
+                },
+                signfor() {
+                    alert("演示项目，无须注册，直接点击登录即可");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

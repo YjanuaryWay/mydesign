@@ -1,0 +1,38 @@
+﻿nav img{
+    height:2.1rem;
+}
+nav .logo {
+    font-size: 2rem;
+}
+
+.row {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.column {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+}
+
+table th {
+    background: #f4f5f9;
+}
+
+input {
+    line-height: 1.5rem;
+    padding: 0 0.5rem;
+    height: 1.5rem;
+}
+
+th, td {
+    text-align: center;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid;
+}
+
+a {
+    color: #0366d6;
+    text-decoration: none;
+    cursor: pointer;
+}

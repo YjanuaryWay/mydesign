@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    @*<link href="~/all.css" rel="stylesheet" />*@
+    <link href="~/Content/css/layout.css" rel="stylesheet" />
+    <link href="~/Content/css/wyj.css" rel="stylesheet" />
+    <link href="~/Content/css/menu.css" rel="stylesheet" />
+    <link href="~/Content/css/razorPage.css" rel="stylesheet" />
+    <link href="~/Content/css/component.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="~/Scripts/Base/base.js"></script>
+    @RenderSection("head", false)
+</head>
+
+<body class="wyjcontainer_V">
+    <div class="fitem_none padding border_B">
+        @await Component.InvokeAsync("Layouts", "Header")
+    </div>
+    <div class="fitem_auto wyjcontainer_HL">
+        @await Component.InvokeAsync("Layouts", "MainMenu")
+        @RenderBody()
+    </div>
+    <div class="fitem_none wyjcontainer_HM border_T padding">
+        @DateTime.Now
+    </div>
+    <partial name="Components" />
+    @RenderSection("foot", false)
+</body>
+</html>
+

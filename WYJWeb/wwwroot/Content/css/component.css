@@ -1,0 +1,151 @@
+﻿/*组件样式*/
+
+/*模态框*/
+.WYJdialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.WYJdialog_content {
+    margin: 10% auto;
+    width: 75%;
+    padding: 1rem;
+    background-color: white;
+}
+/*消息盒子*/
+.msgbox_alert {
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 0.1rem;
+    background-color: #f2dede;
+    border-color: #ebcccc;
+    color: #a94442;
+    position: fixed;
+    margin: 0px 0px 0px -10px;
+    z-index: 1024;
+    top: 20px;
+    left: 50%;
+}
+
+/*下拉菜单*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*分页组件*/
+.pagenation .onPage {
+    color: wheat;
+    Background: #759d6b;
+}
+
+.pagenation button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.pagenation button:last-child {
+    border-radius: 0px 5px 5px 0px;
+}
+
+.pagenation button:only-child {
+    border-radius: 5px 5px 5px 5px;
+}
+
+/*表单列表*/
+.formGroup_label {
+    line-height: 1.5rem;
+    height: 1.5rem;
+    text-align: right;
+    vertical-align: bottom;
+    margin: 0.5rem 0.5rem;
+}
+
+.formGroup_ele {
+    margin: 0.5rem 0;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    display: block;
+}
+
+/*提示框*/
+.tooltip {
+    position: relative;
+}
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 100px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+         /*定位*/ 
+        position: absolute;
+        left: 1rem;
+        z-index: 1;
+    }
+
+.tooltiptext:before {
+    display: block;
+    content: " ";
+    bottom: 0.5rem;
+    height: 1rem;
+    left: -0.35rem;
+    position: absolute;
+    width: 100%;
+    width: 0;
+    height: 0;
+    border-top: 0.35rem solid transparent;
+    border-right: 0.35rem solid black;
+    border-bottom: 0.35rem solid transparent;
+}
+/*.tooltiptext:after {
+    border-left: solid transparent 10px;
+    border-right: solid transparent 10px;
+    border-top: solid #1496bb 10px;
+    bottom: -10px;
+    content: " ";
+    height: 0;
+    left: 50%;
+    margin-left: -13px;
+    position: absolute;
+    width: 0;
+}*/
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+    /**临时测试*/
+    .test{
+        height:0;
+        width:0;
+        border-width:30px;
+
+        border-style:solid;
+        overflow:hidden;
+        border-color:transparent blue transparent transparent;
+
+    }

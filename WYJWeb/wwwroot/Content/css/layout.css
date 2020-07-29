@@ -1,0 +1,101 @@
+﻿@charset "UTF-8";
+/*
+ *Loyout页布局
+*/
+html{
+    font-size:20px;
+    height:100%;
+}
+body, .body {
+    height: inherit;
+    width: inherit;
+}
+/*边线*/
+.border_B {
+    border-bottom: 1px groove #e7e7eb;
+}
+.border_T {
+    border-top: 1px groove #e7e7eb;
+}
+
+.border_L {
+    border-left: 1px groove #e7e7eb;
+}
+.border_R {
+    border-right: 1px groove #e7e7eb;
+}
+
+.exclusive{
+    width:100%;
+    height:100%;
+}
+/*flex*/
+.wyjcontainer_H {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.wyjcontainer_HL {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: start;
+    align-items: stretch;
+}
+.wyjcontainer_HM {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.wyjcontainer_HR {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.wyjcontainer_V {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+.wyjcontainer_VM {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.wyjcontainer_VB {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+.fitem_none {
+    flex: none;
+}
+.fitem_auto {
+    flex: auto;
+}
+
+/*內补*/
+.padding {
+    padding: 0.5rem 1rem;
+}
+.padding_H {
+    padding: 0 1rem;
+}
+.padding_V {
+    padding: 0.5rem 0;
+}
+
+
+/*左浮动*/
+.float_l{
+    float:left;
+}
+

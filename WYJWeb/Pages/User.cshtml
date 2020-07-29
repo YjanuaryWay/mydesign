@@ -1,0 +1,75 @@
+﻿    <div class="fitem_auto padding" id="Root">
+        <div v-show="msg" class="msgbox_alert">{{msg}}</div>
+        <div v-show="active">
+            <buttonlist :hook="hooks[0]" :set="sets[0]" class="wyjcontainer_H border_B padding_V"></buttonlist>
+            <pagenation :hook="hooks[1]" :set="listMain" :api="Api" hasToolbar="yes">
+                <template #toolbar="postData">
+                    <input placeholder="请输入ID" v-model="postData.queryKeys.key" />
+                </template>
+                <template #td="models">
+                    <td ><a class="tooltip" @@click="Switch(3, models.model)">{{models.model.Id}}<span class="tooltiptext">查看详情</span></a></td>
+                    <td>{{models.model.LoginId}}</td>
+                    <td>{{models.model.Password}}</td>
+                    <td>{{models.model.Role}}</td>
+                    <td>{{models.model.ModelType}}</td>
+                    <td>
+                        <a v-for="btn in icons" :key="btn.text" :class="btn.class" @@click="btn.act(models.model)"><i class="icon icon-lg icon-trash"></i>{{btn.text}}</a>
+                    </td>
+                </template>
+            </pagenation>
+        </div>
+        <div v-show="!active" class="exclusive wyjcontainer_V">
+            <buttonlist :hook="hooks[2]" :set="sets[1]"  class="wyjcontainer_HL border_B padding_V"></buttonlist>
+            <editor :hook="hooks[3]" :set="labels">
+                <template  v-if="viewMode" #ele>
+                    <div class="formGroup_ele" v-for="(y,x) in labels" :key="x">{{model[x]}}</div>
+                </template>
+                <template v-else #ele="slotProps">
+                    <input class="formGroup_ele" v-model="model.LoginId" placeholder="请输入登录名" />
+                    <input class="formGroup_ele" v-model="model.Password" placeholder="请输入登录密码" />
+                </template>
+                <template #subtmpl></template>
+            </editor>
+            <buttonlist :hook="hooks[4]" :set="sets[2]" class="wyjcontainer_HM border_T"></buttonlist>
+        </div>
+    </div>
+
+@section foot {
+    <script type="text/javascript">
+        var app = new App({
+            Api: 'user',
+            listMain: {
+                queryKeys: {
+                    key: '',
+                    LoginId:'',
+                    Password:''
+                },
+                titles: ["ID", "登录名", "登录密码", "用户角色", "用户类型", "操作"],
+            },
+            PageTitles: ['用户管理', '新增用户', '编辑用户', '查看用户'],
+            icons: [{
+                class: "text_danger",
+                text: "删除",
+                act: (e, i) => {
+                    app.DeleteById(e.Id, i)
+                }
+            }, {
+                class: "text_primary",
+                text: "编辑",
+                act: (e) => {
+                    app.Switch(2, e);
+                }
+            }, {
+                class: "text_primary",
+                text: "查看",
+                act: (e) => {
+                    app.Switch(3, e);
+                }
+                }],
+            labels: {
+                LoginId: '登录名',
+                Password:'登录密码'
+            },
+        });
+    </script>
+}

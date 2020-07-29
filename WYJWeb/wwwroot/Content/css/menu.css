@@ -1,0 +1,43 @@
+﻿
+.menus {
+    color: #222;
+}
+.submenu {
+    margin:0 1rem;
+    display: none;
+}
+
+.active{
+    display:block;
+}
+.menus > li > a {
+    display: block;
+    position: relative;
+    margin: 0;
+    border: 0;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    color: #222;
+    border-bottom: 1px solid #F0F5F7;
+    color: #555555;
+}
+.menus > li.active > a > .arrow:before {
+    content: "\f107";
+}
+
+.menus > li > a > .arrow:before {
+    float: right;
+    width: 10px;
+    text-align: center;
+    margin-top: 2px;
+    margin-right: 5px;
+    margin-left: 5px;
+    display: inline;
+    font-size: 16px;
+    font-family: FontAwesome;
+    height: auto;
+    content: "\f104";
+    font-weight: 300;
+    text-shadow: none;
+    color: #b2b2b2;
+}

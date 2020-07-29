@@ -1,0 +1,39 @@
+﻿[
+  {
+    "Id": "1",
+    "Name": "首页",
+    "ClassName": "icon icon-home",
+    "Url": "/index"
+  },
+  {
+    "Id": "2",
+    "Name": "系统设置",
+    "ClassName": "icon icon-users",
+    "SubMenus": [
+      {
+        "ClassName": "icon icon-building-o",
+        "Id": "3",
+        "Name": "用户管理",
+        "Url": "/User"
+      },
+      {
+        "ClassName": "icon icon-building-o",
+        "Id": "4",
+        "Name": "资格认证",
+        "Url": "/Supplier/PartsCertification"
+      },
+      {
+        "ClassName": "icon icon-building-o",
+        "Id": "5",
+        "Name": "通知",
+        "Url": "/Notification"
+      },
+      {
+        "ClassName": "icon icon-building-o",
+        "Id": "6",
+        "Name": "角色管理",
+        "Url": "/Role"
+      }
+    ]
+  }
+]

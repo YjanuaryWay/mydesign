@@ -1,0 +1,32 @@
+﻿<nav class="wyj-fitem_none border_R padding">
+    <ul class="menus wyjcontainer_V">
+        @foreach (var item in WYJCore.WYJ.Menus)
+        {
+            <li class="@(item.SubMenus?.Count>0?"topMenu":"")" data-top="@item.Id">
+                @if (item.SubMenus?.Count > 0)
+                {
+                    <a>
+                        <i class="@item.ClassName"></i>
+                        <span>@item.Name</span>
+                    </a>
+                    <ul class="submenus">
+                        @foreach (var subItem in item.SubMenus)
+                        {
+                            <li>
+                                <a href="@subItem.Url" data-itemid="@subItem.Id">@subItem.Name</a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <a href="@item.Url" data-itemid="@item.Id">
+                        <i class="@item.ClassName"></i>
+                        @item.Name
+                    </a>
+                }
+            </li>
+        }
+    </ul>
+</nav>
+

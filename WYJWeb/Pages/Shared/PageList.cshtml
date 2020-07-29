@@ -1,0 +1,16 @@
+﻿<script type="text/javascript">
+        var app = {
+            init(vm) {
+                vm.Api = 'Role';
+                vm.PageTitles = ['管理角色', '新增角色', '编辑角色', '查看角色'];
+                vm.PageTitle = "管理角色";
+                vm.PageList.thead = ["ID", "角色名称", "角色权限", "角色类型", "操作"];
+                vm.Pagedetail.label = {
+                    Name: '角色名称',
+                    Powers: '角色权限'
+                }
+                vm.Query();
+            }
+        };
+        app.init(Root);
+</script>
