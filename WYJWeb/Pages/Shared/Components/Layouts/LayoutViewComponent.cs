@@ -17,7 +17,7 @@ namespace Belary
     {
         public IViewComponentResult Invoke(string name)
         {
-            var user = new WYJWeb.Models.User { LoginId = "南山必胜客" };
+             var user = new WYJWeb.Models.User { LoginId = "南山必胜客" };
              return View(name, user);
         }
 

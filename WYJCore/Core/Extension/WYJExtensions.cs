@@ -25,11 +25,11 @@ namespace WYJCore.Extension
 
         public static IServiceCollection AddWYJRouter(this IServiceCollection services)
         {
-            services.Configure<RazorViewEngineOptions>(opt =>
+            services.Configure<RazorViewEngineOptions>(option =>
             {
-                opt.ViewLocationFormats.Clear();
-                opt.ViewLocationFormats.Add("/Pages/{0}.cshtml");
-                opt.ViewLocationFormats.Add("/Pages/Shared/{0}.cshtml");
+                option.ViewLocationFormats.Clear();
+                option.ViewLocationFormats.Add("/Pages/{0}.cshtml");
+                option.ViewLocationFormats.Add("/Pages/Shared/{0}.cshtml");
             });
 
             services.AddSingleton<SiteLauncher>();

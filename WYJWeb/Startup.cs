@@ -7,7 +7,6 @@ using Microsoft.Extensions.Hosting;
 using System;
 using WYJCore;
 using WYJCore.Extension;
-using WYJData;
 using WYJWeb.Models;
 
 namespace WYJWeb
